@@ -1,0 +1,136 @@
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.space-x-1 > * + *	{
+    margin-left: 0.25rem; /* 4px */
+}
+
+.bg-transparent	{
+    background-color: transparent;
+}
+
+.border-0 {
+    border-width: 0px;
+}
+
+.p-0 {
+    padding: 0px;
+}
+
+.space-y-4 > * + *	{
+    margin-top: 1rem; /* 16px */
+}
+
+.space-y-5 > * + * {
+    margin-top: 1.25rem; /* 20px */    
+}
+
+.space-y-3\.5 > * + * {
+    margin-top: 0.875rem; /* 14px */
+} 
+
+.space-y-5 {
+    margin-top: 1.25rem; /* 20px */    
+}
+
+.space-y-8 > * + * {
+    margin-top: 2rem; /* 32px */    
+}
+
+.w-full {
+    width: 100%;
+}
+
+.space-y-2\.5  > * + * {
+    margin-top: 0.625rem; /* 10px */
+}
+
+.space-y-2-5 > * + *	
+{
+    margin-top: 0.625rem; /* 10px */
+}
+
+.space-y-5 > * + * 
+{
+    margin-top: 1.25rem; /* 20px */
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-center	{
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.p-4 {
+    padding: 1rem; /* 16px */
+}
+
+.divide-x > * + * {
+    border-right-width: 0px;
+    border-left-width: 1px;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.justify-start	{
+    justify-content: flex-start;
+}
+
+.browser-mockup {
+    border-top: 2em solid rgba(230, 230, 230, 0.7);
+    box-shadow: 0 0.1em 1em 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    margin: 2em;
+    flex: 1;
+}
+  
+.browser-mockup:before {
+    display: block;
+    position: absolute;
+    content: '';
+    top: -1.25em;
+    left: 1em;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: #f44;
+    box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5;
+}
+
+.browser-mockup.with-url:after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: -1.6em;
+    left: 5.5em;
+    width: calc(100% - 6em);
+    height: 1.2em;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.browser-mockup > * {
+    display: block;
+}
