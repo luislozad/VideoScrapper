@@ -42,6 +42,25 @@
     <meta name="keywords" content="{{ __('Website keywords') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    
+    <link rel="alternate" href="/?lang=es" hreflang="es" />
+    <link rel="alternate" href="/?lang=en" hreflang="en" />
+    <link rel="alternate" href="/?lang=fr" hreflang="fr" />
+    <link rel="alternate" href="/?lang=ar" hreflang="ar" />
+    <link rel="alternate" href="/?lang=pt" hreflang="pt" />
+    <link rel="alternate" href="/?lang=de" hreflang="de" />
+    <link rel="alternate" href="/?lang=it" hreflang="it" />
+    <link rel="alternate" href="/?lang=tr" hreflang="tr" />
+    <link rel="alternate" href="/?lang=ru" hreflang="ru" />
+    <link rel="alternate" href="/?lang=hi" hreflang="hi" />
+    <link rel="alternate" href="/?lang=bn" hreflang="bn" />
+    <link rel="alternate" href="/?lang=zh" hreflang="zh" />
+    <link rel="alternate" href="/?lang=ja" hreflang="ja" />
+    <link rel="alternate" href="/?lang=he" hreflang="he" />
+    <link rel="alternate" href="/?lang=th" hreflang="th" />
+    <link rel="alternate" href="/?lang=ro" hreflang="ro" />
+    <link rel="alternate" href="/?lang=ka" hreflang="ka" />
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-multiselect@latest/dist/vue-multiselect.min.css">  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/skeleton-screen-css@1.1.0/dist/index.min.css">
@@ -65,7 +84,7 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('front/img/favicon.png') }}">   
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-multiselect@latest"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/vue-multiselect@2.1.8"></script>   
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
