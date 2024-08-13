@@ -16,7 +16,7 @@
       $page = App\Models\Page::first();
       if ($page) {
         $appName = $page->appName;
-        $favicon = $page->icon ? asset("storage/$page->icon") : $favicon;
+        $favicon = $page->icon ? asset("$page->icon") : $favicon;
       }
     } catch (\Throwable $th) {
       Log::info($th);
@@ -82,7 +82,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{ asset('front/img/favicon.png') }}">   
+    <link rel="shortcut icon" href="{{ $favicon }}">   
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-multiselect@2.1.8"></script>   
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
