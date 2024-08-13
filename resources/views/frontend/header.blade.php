@@ -9,7 +9,7 @@
     try {
       $page = App\Models\Page::first();
       if ($page) {
-        $logo = "storage/$page->logo";
+        $logo = $page->logo ? "storage/$page->logo" : $logo;
       }
     } catch (\Throwable $th) {
       Log::info($th);
