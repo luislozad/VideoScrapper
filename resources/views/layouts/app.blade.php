@@ -24,7 +24,7 @@
 
     try {
       $ad = App\Models\Ads::where('type', 'scripts')->first();
-      $data = json_decode($ad->data, true);
+      $data = $ad && $ad->data ? json_decode($ad->data, true) : null;
     } catch (\Throwable $th) {
       Log::info($th);
     }
@@ -137,7 +137,7 @@
       }
     </style>    
     @stack('header-libs')
-    @if ($data['header']['checked'])
+    @if ($data && $data && $data['header']['checked'])
         {!! $data['header']['code'] !!}
     @endif
   </head>
@@ -155,7 +155,7 @@
     <script src="{{ asset('front/js/front.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     @stack('footer-libs')
-    @if ($data['footer']['checked'])
+    @if ($data && $data['footer']['checked'])
         {!! $data['footer']['code'] !!}
     @endif    
   </body>
