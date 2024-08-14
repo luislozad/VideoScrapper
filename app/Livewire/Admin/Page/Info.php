@@ -101,8 +101,8 @@ class Info extends Component
             $fullPath = storage_path("app/public/{$path}");
             chmod($fullPath, 0644); // Permisos de lectura/escritura para el propietario, solo lectura para otros
 
-            // Cambiar el propietario y grupo
-            exec("sudo chown www-data:www-data $fullPath");
+            // Cambiar el propietario y grupo si es necesario
+            // sudo chown www-data:www-data $fullPath;
 
             return $path;
         }
