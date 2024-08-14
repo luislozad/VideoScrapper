@@ -94,17 +94,7 @@ class Info extends Component
         $logo = $this->logo;
 
         if ($logo) {
-            // Guardar el archivo
-            $path = $logo->storePublicly('logos', 'public');
-
-            // Ajustar los permisos del archivo recién subido
-            $fullPath = storage_path("app/public/{$path}");
-            chmod($fullPath, 0644); // Permisos de lectura/escritura para el propietario, solo lectura para otros
-
-            // Cambiar el propietario y grupo si es necesario
-            // sudo chown www-data:www-data $fullPath;
-
-            return $path;
+            return $logo->storePublicly('logos', 'public');
         }
 
         return $this->logoUrl;
