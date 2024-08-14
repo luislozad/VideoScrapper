@@ -17,7 +17,8 @@
         "laravolt/avatar": "^5.0",
         "livewire/livewire": "^3.3",
         "php-flasher/flasher-laravel": "^1.15",
-        "stevebauman/location": "^7.1"
+        "stevebauman/location": "^7.1",
+        "symfony/filesystem": "^6.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
