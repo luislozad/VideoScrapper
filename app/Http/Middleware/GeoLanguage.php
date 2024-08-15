@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Utils\Language;
+use Codezero\BrowserLocale\BrowserLocale;
 
 class GeoLanguage
 {
@@ -18,15 +19,17 @@ class GeoLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Obtener una instancia de BrowserLocale desde el contenedor de servicios de Laravel
+        $browser = app()->make(BrowserLocale::class);
+        $locale = $browser->getLocale();
+
+        // Obtener el idioma preferido del navegador
+        $browserLanguage = $locale ? $locale->language : null;
+
         $languages = $this->getShortLang();
 
-        // \Debugbar::info($languages);
-
         $lang = $request->query('lang');
-
         $languagePreference = $request->cookie('language_preference');
-
-        $browserLanguage = $request->getPreferredLanguage(config('app.locales'));
 
         $defaultLang = $this->getDefaultLang();
 
@@ -36,16 +39,9 @@ class GeoLanguage
         } elseif (in_array($languagePreference, $languages)) {
             app()->setLocale($languagePreference);
             $this->response = $this->saveLanguagePreference($request, $next, $languagePreference);
-        } elseif ($browserLanguage) {
-            $langCode = explode('_', $browserLanguage);
-
-            if (!empty($langCode) && in_array($langCode[0], $languages)) {
-                app()->setLocale($langCode[0]);
-                $this->response = $this->saveLanguagePreference($request, $next, $langCode[0]);
-            } else {
-                app()->setLocale($defaultLang);
-                $this->response = $this->saveLanguagePreference($request, $next, $defaultLang);
-            }
+        } elseif ($browserLanguage && in_array($browserLanguage, $languages)) {
+            app()->setLocale($browserLanguage);
+            $this->response = $this->saveLanguagePreference($request, $next, $browserLanguage);
         } else {
             app()->setLocale($defaultLang);
             $this->response = $this->saveLanguagePreference($request, $next, $defaultLang);
