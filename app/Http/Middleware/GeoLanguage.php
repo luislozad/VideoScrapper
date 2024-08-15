@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Utils\Language;
-use Codezero\BrowserLocale\BrowserLocale;
+// use Codezero\BrowserLocale\BrowserLocale;
 
 class GeoLanguage
 {
@@ -20,7 +20,7 @@ class GeoLanguage
     public function handle(Request $request, Closure $next): Response
     {
         // Obtener una instancia de BrowserLocale desde el contenedor de servicios de Laravel
-        $browser = app()->make(BrowserLocale::class);
+        $browser = \App::make(\CodeZero\BrowserLocale\BrowserLocale::class);
         $locale = $browser->getLocale();
 
         // Obtener el idioma preferido del navegador
