@@ -78,7 +78,7 @@
     <!-- Swiper sLider-->
     <link rel="stylesheet" href="{{ asset('front/vendor/swiper/css/swiper.min.css') }}">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="{{ asset('front/css/style.default.css') }}" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{ asset('front/css/style.default.css?v=1') }}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}">
     <!-- Favicon-->
@@ -128,6 +128,27 @@
 
       .multiselect__option--highlight {
         background: #540CFA;
+      }
+
+      .text-title {
+        font-size: 3rem;
+      }
+      
+      @media (max-width: 991.98px) {
+        .text-title {
+          font-size: 2rem;
+        }
+
+        .text-subtitle {
+          font-size: 1rem;
+        }
+        
+        .container-mv {
+          width: 100%;
+          max-width: 100%;
+          -ms-flex: 100%;
+          flex: 100%;
+        }
       }
 
     </style>
