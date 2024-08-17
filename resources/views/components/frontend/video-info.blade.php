@@ -16,7 +16,7 @@ try {
 
 @props(['image', 'play', 'title', 'files'])
 
-<div class="row align-items-center testim-inner" x-data="{
+<div class="row align-items-center testim-inner mw-100" x-data="{
   data: {{ Js::from($data) }},
   openPopup: false,
   handlePopup: function() {
@@ -59,7 +59,7 @@ try {
     <!--begin col-md-6 -->
     <div class="col-md-6">
       
-      <h3>{{ $title }}</h3>
+      <h3 class="text-size-min">{{ $title }}</h3>
       
       @foreach ($files as $file)
       <a 

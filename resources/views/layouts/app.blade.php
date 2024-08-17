@@ -90,6 +90,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <style>
 
+      .text-size-min {
+        word-wrap: break-word;
+        white-space: normal;        
+      }
+
       .ion-logo-tiktok {
         opacity: .5;
         transition: all 0.2s ease-in-out;
