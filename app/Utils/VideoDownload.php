@@ -10,7 +10,7 @@ use Barryvdh\Debugbar\Facades\Debugbar as Logg;
 
 class VideoDownload
 {
-    use Tiktok, Facebook, Instagram;
+    use Tiktok, Facebook, Instagram, Twitter;
     private string $url;
     private Client $client;
 
@@ -32,12 +32,13 @@ class VideoDownload
             'instagram.com', 'ig.me' => $this->instagram($url),
             'tiktok.com' => $this->tiktok($url),
             'facebook.com', 'fb.me', 'fb.com', 'fb.watch' => $this->facebook($url),
+            'twitter.com', 'x.com' => $this->twitter($url),
             default => [
                 'code' => -1
             ],
         };
 
-        // \Debugbar::info($videoData);
+        // Logg::info($videoData);
 
         // $driver = new DownloadDriver($videoData['platform'], $videoData['file']['url'][0]);
 
