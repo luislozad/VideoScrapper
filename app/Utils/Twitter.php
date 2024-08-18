@@ -367,12 +367,14 @@ trait Twitter {
         }
 
         if ($legacy['is_quote_status']) {
-            $quotedResult = $result['quoted_status_result'];
-            if (is_array($quotedResult)) {
-                $quotedMediaList = $this->getMediaByType($quotedResult['result']);
-                $mediaList['url'] = array_merge($mediaList['url'], $quotedMediaList['url']);
-                $mediaList['type'] = array_merge($mediaList['type'], $quotedMediaList['type']);
-                $mediaList['cover'] = array_merge($mediaList['cover'], $quotedMediaList['cover']);
+            if (array_key_exists('quoted_status_result', $result)) {
+                $quotedResult = $result['quoted_status_result'];
+                if (is_array($quotedResult)) {
+                    $quotedMediaList = $this->getMediaByType($quotedResult['result']);
+                    $mediaList['url'] = array_merge($mediaList['url'], $quotedMediaList['url']);
+                    $mediaList['type'] = array_merge($mediaList['type'], $quotedMediaList['type']);
+                    $mediaList['cover'] = array_merge($mediaList['cover'], $quotedMediaList['cover']);
+                }
             }
         }
 
@@ -429,10 +431,10 @@ trait Twitter {
             $response = $this->getTweetDetails($tweetUrl, $guestToken, $bearerToken[0]);
             // Logg::info($response);
             $jsonData = json_decode($response, JSON_PRETTY_PRINT);
-            // Logg::info($jsonData);
+            Logg::info($jsonData);
     
             $videoUrls = $this->createMediaLinks($jsonData);
-            // Logg::info($videoUrls);
+            Logg::info($videoUrls);
             return $videoUrls;
         } catch (\Exception $e) {
             Logg::error("Error: " . $e);
