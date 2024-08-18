@@ -2,3 +2,4 @@
 !public/
 !.gitignore
 !tlds-alpha-by-domain.txt
+!RequestDetails.json
