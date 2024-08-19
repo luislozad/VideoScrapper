@@ -10,7 +10,7 @@ use Barryvdh\Debugbar\Facades\Debugbar as Logg;
 
 class VideoDownload
 {
-    use Tiktok, Facebook, Instagram, Twitter;
+    use Tiktok, Facebook, InstagramV2, Twitter;
     private string $url;
     private Client $client;
 

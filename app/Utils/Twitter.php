@@ -11,6 +11,8 @@ use Barryvdh\Debugbar\Facades\Debugbar as Logg;
 trait Twitter {
     use Fetch;
 
+    // protected string $platform = 'twitter';
+
     protected $headers = [
         "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0",
         "Accept" => "*/*",
@@ -414,17 +416,18 @@ trait Twitter {
         $cover = $this->getPostCover($mediaList);
         $id = $result['rest_id'];
 
-        return [
-            'code' => 0,
-            'platform' => 'twitter',
-            'file' => [
-                'type' => $mediaList['type'],
-                'url' => $mediaList['url'],
-            ],
-            'title' => $mediaList['title'],
-            'cover' => $cover,
-            'id' => $id,
-        ];
+        $api = new APIData('twitter');
+
+        $api
+        ->success(0)
+        ->setTitle($mediaList['title'])
+        ->setCover($cover)
+        ->setID( $id )
+        ->addFiles()
+        ->setTypes($mediaList['type'])
+        ->setUrls( $mediaList['url'] );
+
+        return $api->build();
     }
     
     protected function generateDownloadLinks(string $tweetUrl, int $ctr = 0): array {
