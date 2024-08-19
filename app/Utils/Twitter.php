@@ -315,6 +315,7 @@ trait Twitter {
             'cover' => [],
             'title' => '',
             'postText' => false,
+            'quotedPermalink' => null,
         ];
 
         $legacy = $result['legacy'];
@@ -369,11 +370,14 @@ trait Twitter {
         if ($legacy['is_quote_status']) {
             if (array_key_exists('quoted_status_result', $result)) {
                 $quotedResult = $result['quoted_status_result'];
-                if (is_array($quotedResult)) {
+                if (is_array($quotedResult) && count($quotedResult) > 0) {
                     $quotedMediaList = $this->getMediaByType($quotedResult['result']);
                     $mediaList['url'] = array_merge($mediaList['url'], $quotedMediaList['url']);
                     $mediaList['type'] = array_merge($mediaList['type'], $quotedMediaList['type']);
                     $mediaList['cover'] = array_merge($mediaList['cover'], $quotedMediaList['cover']);
+                } elseif (array_key_exists('quoted_status_permalink', $legacy) && count($legacy) > 0) {
+                    $expanded = $legacy['quoted_status_permalink']['expanded'] ?? null;
+                    $mediaList['quotedPermalink'] = $expanded;
                 }
             }
         }
@@ -402,7 +406,8 @@ trait Twitter {
 
         if ($mediaList['postText']) {
             return [
-                'code' => -1
+                'code' => -1,
+                'result' => $mediaList
             ];
         }
 
@@ -422,19 +427,32 @@ trait Twitter {
         ];
     }
     
-    protected function generateDownloadLinks(string $tweetUrl): array {
+    protected function generateDownloadLinks(string $tweetUrl, int $ctr = 0): array {
         try {
             [$bearerToken, $guestToken] = $this->getTokens($tweetUrl);
             // Logg::info($bearerToken);
             // Logg::info($guestToken);
     
             $response = $this->getTweetDetails($tweetUrl, $guestToken, $bearerToken[0]);
-            // Logg::info($response);
+            Logg::info($response);
             $jsonData = json_decode($response, JSON_PRETTY_PRINT);
             Logg::info($jsonData);
     
             $videoUrls = $this->createMediaLinks($jsonData);
-            Logg::info($videoUrls);
+
+            if ($videoUrls['code'] === -1) {
+                $quotedPermalink = $videoUrls['result']['quotedPermalink'];
+                if ($quotedPermalink !== null && $ctr === 0) {
+                    $videoUrls = $this->generateDownloadLinks($quotedPermalink, $ctr + 1);
+                } else {
+                    $videoUrls = [
+                        'code' => -1
+                    ];
+                }
+            }
+
+            // Logg::info($videoUrls);
+
             return $videoUrls;
         } catch (\Exception $e) {
             Logg::error("Error: " . $e);
