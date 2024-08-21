@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use App\Services\Rapidapi\AutoDownloadAllInOne;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Client;
 use App\Utils\Domain;
@@ -10,7 +11,7 @@ use Barryvdh\Debugbar\Facades\Debugbar as Logg;
 
 class VideoDownload
 {
-    use Tiktok, Facebook, InstagramV2, Twitter;
+    use Tiktok, Facebook, InstagramV2, Twitter, AutoDownloadAllInOne;
     private string $url;
     private Client $client;
 
@@ -28,17 +29,19 @@ class VideoDownload
 
         //\Debugbar::info($this->instagram($url));
 
-        $videoData = match ($domain) {
-            'instagram.com', 'ig.me' => $this->instagram($url),
-            'tiktok.com' => $this->tiktok($url),
-            'facebook.com', 'fb.me', 'fb.com', 'fb.watch' => $this->facebook($url),
-            'twitter.com', 'x.com' => $this->twitter($url),
-            default => [
-                'code' => -1
-            ],
-        };
+        // $videoData = match ($domain) {
+        //     'instagram.com', 'ig.me' => $this->instagram($url),
+        //     'tiktok.com' => $this->tiktok($url),
+        //     'facebook.com', 'fb.me', 'fb.com', 'fb.watch' => $this->facebook($url),
+        //     'twitter.com', 'x.com' => $this->twitter($url),
+        //     default => [
+        //         'code' => -1
+        //     ],
+        // };
 
-        // Logg::info($videoData);
+        $videoData = $this->autoDownloadAllInOne($url);
+
+        Logg::info($videoData);
 
         // $driver = new DownloadDriver($videoData['platform'], $videoData['file']['url'][0]);
 
