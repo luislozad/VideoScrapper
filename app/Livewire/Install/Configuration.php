@@ -100,7 +100,6 @@ class Configuration extends Component
         $config = [];
 
         $config['APP_NAME'] = '"' . $appName . '"';
-        // $config['APP_DEBUG'] = 'false';
         $config['APP_URL'] = url('/');
         $config['DB_HOST'] = $hostDB;
         $config['DB_PORT'] = $portDB;

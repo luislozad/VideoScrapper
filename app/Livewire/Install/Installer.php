@@ -53,9 +53,8 @@ class Installer extends Component
     public function runArtisanCommand()
     {
         try {
-            // Artisan::call('storage:link');
-            // Artisan::call('cache:clear');
-            Artisan::call('config:clear');
+            //Artisan::call('config:clear');
+            Artisan::call('storage:link', ['--relative' => true]);
             Artisan::call('migrate:fresh', ['--force' => true]);
 
             return ['error' => false];

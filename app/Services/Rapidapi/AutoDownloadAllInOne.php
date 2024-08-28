@@ -16,15 +16,13 @@ trait AutoDownloadAllInOne {
         $client = $this->getClient();
 
         try {
-            // $response = $client->post('https://auto-download-all-in-one.p.rapidapi.com/v1/social/autolink', [
-            $response = $client->post('https://auto-download-all-in-one-big.p.rapidapi.com/v1/social/autolink', [
+            $response = $client->post('https://auto-download-all-in-one.p.rapidapi.com/v1/social/autolink', [
                 'json' => [
                     'url' => $url
                 ],
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    // 'x-rapidapi-host' => 'auto-download-all-in-one.p.rapidapi.com',
-                    'x-rapidapi-host' => 'auto-download-all-in-one-big.p.rapidapi.com',
+                    'x-rapidapi-host' => 'auto-download-all-in-one.p.rapidapi.com',
                     'x-rapidapi-key' => '7f63266777msh0e6d2673a634ab7p13d259jsneb8110ba688e',
                 ],
                 'timeout' => 30,

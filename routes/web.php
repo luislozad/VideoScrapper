@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\AdControl;
 use App\Livewire\Admin\ProfileControl;
 use App\Livewire\Admin\UpdateControl;
+use App\Livewire\Admin\Plugins\MediaDownloader;
 use App\Http\Controllers\Install\Configuration;
 use App\Http\Controllers\Install\Installer;
 use App\Http\Controllers\HomeController;
@@ -35,15 +36,25 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'lang'])->name('dashboard');
 
-Route::middleware(['auth', 'lang'])->group(function () {
-    Route::get('/admin/ads', AdControl::class)->name('admin.ads');
-    Route::get('/admin/page', [PageControl::class, 'index'])->name('admin.page');
-    Route::get('/admin/profile', ProfileControl::class)->name('admin.profile');
-    Route::get('/admin/update', UpdateControl::class)->name('admin.update');
-    Route::get('/admin/translate-api', TranslateApiControl::class)->name('admin.translate-api');
-    Route::get('/admin/languages', LanguagesControl::class)->name('admin.languages');
-    // Route::get('/admin/themes', Themes::class)->name('admin.themes');
-    Route::get('/admin/template-content', ThemeContent::class)->name('admin.template-content');
+Route::middleware(['auth', 'lang'])
+->prefix('admin')
+->name('admin.')
+->group(function () {
+    Route::get('ads', AdControl::class)->name('ads');
+    Route::get('page', [PageControl::class, 'index'])->name('page');
+    Route::get('profile', ProfileControl::class)->name('profile');
+    Route::get('update', UpdateControl::class)->name('update');
+    Route::get('translate-api', TranslateApiControl::class)->name('translate-api');
+    Route::get('languages', LanguagesControl::class)->name('languages');
+    // Route::get('themes', Themes::class)->name('themes');
+    Route::get('template-content', ThemeContent::class)->name('template-content');
+
+    Route::prefix('plugins')
+    ->name('plugins.')
+    ->group(function () {
+        Route::get('media-downloader', MediaDownloader::class)->name('media_downloader');
+    });
+
 });
 
 Route::middleware(['install'])->group(function () {
