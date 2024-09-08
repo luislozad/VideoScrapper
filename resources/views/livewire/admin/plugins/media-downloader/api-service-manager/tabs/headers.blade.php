@@ -1,0 +1,1 @@
+<x-pg-media-downloader::api-service-manager.tabs.parts.table title="Headers" list="headers" openModalDanger="openModalDanger" handlerDeleteItem="deleteItem" handlerDeleteAll="deleteAllItems" handlerAddItem='addItem' handlerSortItems="sortItems" />

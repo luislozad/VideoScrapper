@@ -60,7 +60,31 @@
         aside > .container-fluid .userprofile {
           display: flex !important;
         }
-      }      
+      }
+
+      .btn-a {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: box-shadow 1s;     
+      }
+
+      .btn-a:hover {
+        opacity: 1.0;
+      }
+
+      .btn-a:active > * {
+        box-shadow: 0 0 0 1px black;
+      }
+
+      .btn-drag {
+        cursor: grab;
+      }
+
+      .btn-drag:active {
+        cursor: grabbing;
+      }
+
+            
     </style>    
     @stack('head-libs')
   </head>

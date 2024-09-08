@@ -1,0 +1,1 @@
+<x-pg-media-downloader::api-service-manager.tabs.parts.table title="Query Params" list="params" handlerDeleteItem="deleteItem" openModalDanger="openModalDanger" handlerDeleteAll="deleteAllItems" handlerAddItem='addItem' handlerSortItems="sortItems" onItemUpdate="onItemUpdate" />
